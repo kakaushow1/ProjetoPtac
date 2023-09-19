@@ -18,19 +18,19 @@ export default async function alter() {
       <h1>Alterar</h1>
 
       <form action="" onSubmit={submitEvent}>
-        <div className="input_box">
+        <div className="input">
 
           <input type="text" required placeholder='Nome'/>
          
         </div>
 
-        <div className="input_box">
+        <div className="input">
 
           <input type="email" required placeholder='E-mail'/>
           
         </div>
 
-        <div className="input_box">
+        <div className="input">
 
           <input type="password" required placeholder='senha'/>
           
