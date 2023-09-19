@@ -2,6 +2,9 @@
 import { useState } from "react";
 import handlerAcessUser from "./functions/handlerAcess"
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -13,28 +16,36 @@ export default function Login() {
   const handlerLogin = async (e) => {
     e.preventDefault();
     try {
-      await handlerAcessUser(user);
-      push('/pages/dashboard');
+  const userAuth =await handlerAcessUser(user);
+  if(userAuth.token === undefined){
+    toast.error("Email ou senha digitado errado");
+  }
+  push('/pages/dashboard')
     } catch {
-      refresh();
+      toast.error("erro na aplicação")
     }
   }
   return (
-    <div>
+    <div  >
+      <div className="login">
       <h1>Login</h1>
       <form onSubmit={handlerLogin}>
-        <input
-          placeholder='E-mail'
-          type="email"
-          onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
-        </input>
-        <input
-          placeholder='Senha'
-          type='password'
-          onChange={(e) => { setUser({ ...user, password: e.target.value }) }}>
-        </input>
-        <button>Entrar</button>
+        <div className="input_box">
+        <input type="email" onChange={(e) => { setUser({ ...user, email: e.target.value }) }}/>
+        <label for="">E-mail</label>
+        </div>
+
+        <div className="input_box">
+        <input type='password' onChange={(e) => { setUser({ ...user, password: e.target.value }) }}/>
+        <label for="">Senha</label>
+        </div>
+        
+        <button className="enter"> Entrar </button>
       </form>
+      <ToastContainer />
+      </div>
+      
+
     </div>
   )
 }
