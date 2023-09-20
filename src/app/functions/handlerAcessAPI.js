@@ -26,3 +26,6 @@ const getUsers = (user) => {
 }
 
 export { getUsers, getUserAuthenticated };
+
+/*fornece funções para autenticar usuários com base em seus e-mails e senhas, 
+bem como obter a lista completa de usuários. */

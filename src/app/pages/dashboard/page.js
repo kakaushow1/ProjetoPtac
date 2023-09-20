@@ -17,11 +17,9 @@ export default async function Dashboard() {
             <h1>Dashboard</h1>
             <div className="container">
                 {users?.map((user, index) =>
-                    <div key={index} className="bloco">
-                       
+                    <div key={index} className="bloco"> 
                     <p><strong>Nome:  </strong>{user.name}</p>
                     <p><strong>E-mail:  </strong>{user.email}</p>
-                        
                     </div>
                 )}
             </div>

@@ -16,3 +16,6 @@ const handlerAcessUser = async (user) => {
 }
 export default handlerAcessUser;
 
+/*recebe um objeto de usuário como entrada, autentica o usuário, valida o token e armazena 
+o token e o nome do usuário em cookies e localStorage, respectivamente, se o token for válido.
+Em seguida, ele retorna as informações do usuário autenticado.*/
