@@ -1,7 +1,7 @@
 'use server'
 const url="https://aula-17-10inicio.vercel.app"
 
-
+//testeS
 
 const getUserAuthenticated = async (user) => {
     const responseOfApi = await fetch(url + "/user/authenticated",
@@ -11,10 +11,14 @@ const getUserAuthenticated = async (user) => {
 }
     );
     const userAuth = await responseOfApi.json();
+    console.log(userAuth)
     return userAuth;
 } 
 
-const getUsers = () => {
+const getUsers = async (user) => {
+const responseOfApi = await fetch(url + "/users", {cache:"no-cache"})
+const userAuth = await responseOfApi.json();
+return userAuth;
     
 }
 
