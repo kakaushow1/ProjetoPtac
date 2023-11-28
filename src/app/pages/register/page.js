@@ -1,13 +1,35 @@
 'use client'
+import {postUser} from '@/app/functions/handlerAcessAPI';
+import {useRouter} from 'next/navigation';
 import React from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './cadastrar.css';
 
+
 export default async function register() {
+
+  const[user, setUser] = useState({
+    name:'',
+    email:'',
+    password:'',
+  });
+  const { push } = useRouter();
 
   const submitEvent = (e) => {
     e.preventDefault();
+    try{
+      await postUser(user);
+      await new Promise((resolve) =>{
+        toast.success('Usuário cadastrado')
+        setTimeout(resolve, 5000)
+
+      })
+      return push("/pages/dashboard");
+
+    } catch {
+      return toast.console.error(("Erro"));
+    }
     toast.success('Usuário cadastrado com sucesso')
   }
   return (
