@@ -1,4 +1,5 @@
 'use client'
+import { updateUser } from '@/app/functions/handlerAcessAPI';
 import React from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +10,7 @@ export default async function alter() {
 
   const submitEvent = (e) => {
     e.preventDefault();
+    await updateUser(user, params.id)
     toast.success('Usuário alterado com sucesso')
   }
   return (

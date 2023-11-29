@@ -5,23 +5,24 @@ import React from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './cadastrar.css';
+import { useState } from 'react';
 
 
-export default async function register() {
+export default function register() {
 
-  const[user, setUser] = useState({
+  const [user, setUser] = useState({
     name:'',
     email:'',
     password:'',
   });
   const { push } = useRouter();
 
-  const submitEvent = (e) => {
+  const submitEvent = async (e) => {
     e.preventDefault();
     try{
       await postUser(user);
       await new Promise((resolve) =>{
-        toast.success('Usuário cadastrado')
+        toast.success('Usuário cadastrado');
         setTimeout(resolve, 5000)
 
       })
@@ -30,7 +31,7 @@ export default async function register() {
     } catch {
       return toast.console.error(("Erro"));
     }
-    toast.success('Usuário cadastrado com sucesso')
+    
   }
   return (
 <>
@@ -48,15 +49,18 @@ export default async function register() {
 
       <form action="" onSubmit={submitEvent}>
         <div className="input">
-          <input type="text" required placeholder='Nome'/>
+          <input type="name" required onChange={(e) => {setUser({...user, name: e.target.value}) }}/>
+          <label>Nome</label>
         </div>
 
         <div className="input">
-          <input type="email" required placeholder='E-mail'/>
+          <input type="email" required onChange={(e) => {setUser({...user, email: e.target.value}) }}/>
+          <label>E-mail</label>
         </div>
 
         <div className="input">
-          <input type="password" required placeholder='Senha' />
+          <input type="password" required onChange={(e) => {setUser({...user, password: e.target.value}) }} />
+          <label>password</label>
         </div>
 
         <button className="enter">Cadastrar </button>

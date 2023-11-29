@@ -37,7 +37,22 @@ const postUser = async (user) => {
     }
 }
 
-export { getUsers, getUserAuthenticated, postUser };
+const updateUser = async (user, id) => {
+    try{
+        const responseOfApi = await fetch(url + "/user" + id,{
+            method:'PUT',
+            headerd: {'Content-Type': 'Application/json'},
+            body: JSON.stringify(user)
+        });
+        const userUpdate = await responseOfApi.json();
+        return userUpdate
+    } catch
+    {
+        return null
+    }
+}
+
+export { getUsers, getUserAuthenticated, postUser, updateUser };
 
 /*fornece funções para autenticar usuários com base em seus e-mails e senhas, 
 bem como obter a lista completa de usuários. */

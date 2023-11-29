@@ -1,5 +1,6 @@
 import { getUsers } from "@/app/functions/handlerAcessAPI";
 import './painel.css';
+import Link from "next/link"
 
 
 export default async function Dashboard() {
@@ -18,8 +19,10 @@ export default async function Dashboard() {
             <div className="container">
                 {users?.map((user, index) =>
                     <div key={index} className="bloco"> 
-                    <p><strong>Nome:  </strong>{user.name}</p>
-                    <p><strong>E-mail:  </strong>{user.email}</p>
+                    <Link href={`/pages/alter/${user.id}`}>
+                        <p><strong>Nome:  </strong>{user.name}</p>
+                        <p><strong>E-mail:  </strong>{user.email}</p>
+                    </Link>
                     </div>
                 )}
             </div>

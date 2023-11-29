@@ -1,4 +1,5 @@
 import {jwtVerify} from "jose"
+import { decode } from "jsonwebtoken";
 
 
 const validateToken = async (token)=>{
@@ -16,6 +17,14 @@ const validateToken = async (token)=>{
     }
     
 }   
+
+const isTokenValidate = await decode(token);
+if(isTokenValidate){
+    return true
+} catch{
+    return false
+}
+
 export {validateToken};
 
 /*é usado para verificar se um token JWT é válido ou não. Se o token puder ser decodificado com 
