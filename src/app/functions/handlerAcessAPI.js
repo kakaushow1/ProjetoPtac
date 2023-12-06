@@ -15,7 +15,7 @@ const getUserAuthenticated = async (user) => {
     return userAuth;
 } 
 
-const getUsers = async (user) => {
+const getUsers = async () => {
 const responseOfApi = await fetch(url + "/users", {cache:"no-cache"})
 const userAuth = await responseOfApi.json();
 return userAuth;
@@ -24,12 +24,14 @@ return userAuth;
 
 const postUser = async (user) => {
     try{
+       
         const responseOfApi = await fetch(url + "/user",{
             method:'POST',
-            headerd: {'Content-Type': 'Application/json'},
+            headers: {'Content-Type': 'Application/json'},
             body: JSON.stringify(user)
         });
         const userSave = await responseOfApi.json();
+        console.log(userSave)
         return userSave
     } catch
     {
@@ -39,13 +41,13 @@ const postUser = async (user) => {
 
 const updateUser = async (user, id) => {
     try{
-        const responseOfApi = await fetch(url + "/user" + id,{
+        const responseOfApi = await fetch(url + "/user/" + id,{
             method:'PUT',
-            headerd: {'Content-Type': 'Application/json'},
+            headers: {'Content-Type': 'Application/json'},
             body: JSON.stringify(user)
         });
-        const userUpdate = await responseOfApi.json();
-        return userUpdate
+        const userUpdateSave = await responseOfApi.json();
+        return userUpdateSave
     } catch
     {
         return null

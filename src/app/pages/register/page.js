@@ -37,9 +37,9 @@ export default function register() {
 <>
 <header>
         <ul class='nav-menu'>
-          <li class='nav-menu-item'><a href='/'>Home</a></li>
-          <li class='nav-menu-item'><a href='/pages/alter'>Alterar</a></li>
-          <li class='nav-menu-item'><a href='/pages/register'>Cadastrar</a></li>
+          <li className='nav-menu-item'><a href='/'>Home</a></li>
+          <li className='nav-menu-item'><a href='/pages/alter'>Alterar</a></li>
+          <li className='nav-menu-item'><a href='/pages/register'>Cadastrar</a></li>
         </ul>
   </header>
 

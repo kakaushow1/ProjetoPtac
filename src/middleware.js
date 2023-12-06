@@ -8,7 +8,7 @@ export const middleware = async (request) => {
     const urlLogin = new URL('/', request.url);
     const urlPainel = new URL('/pages/dashboard', request.url)
     const urlRegistrar = new URL('/pages/register', request.url)
-    const urlAlterar = new URL('/pages/alter', request.url)
+    const urlAlterar = new URL('/pages/alter/[id]', request.url)
     const isTokenValidated = await validateToken(token);
 
     if (!isTokenValidated || !token) {

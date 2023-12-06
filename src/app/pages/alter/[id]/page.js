@@ -3,16 +3,32 @@ import { updateUser } from '@/app/functions/handlerAcessAPI';
 import React from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import './alterar.css';
+import '../alterar.css';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 
-export default async function alter() {
+export default function alter( {params} ) {
+  const [user, setUser] = useState({
+    name:'',
+    email:'',
+    password:'',
+  });
+  const { push } = useRouter();
 
-  const submitEvent = (e) => {
+  const submitEvent = async (e) => {
     e.preventDefault();
-    await updateUser(user, params.id)
-    toast.success('Usuário alterado com sucesso')
-  }
+    try{
+      await updateUser(user, params.id);
+      await new Promise((resolve) => {
+        toast.success('Usuário alterado');
+        setTimeout(resolve, 5000)
+      });
+      return push("/pages/dashboard");
+    } catch {
+      return toast.console.error(("Erro"));
+    }
+  };
   return (
 <>
 <div className="menu">
@@ -30,19 +46,19 @@ export default async function alter() {
       <form action="" onSubmit={submitEvent}>
         <div className="input">
 
-          <input type="text" required placeholder='Nome'/>
+          <input type="text" required onChange={(e) => { setUser({ ...user, name: e.target.value }) }} placeholder='Nome'/>
          
         </div>
 
         <div className="input">
 
-          <input type="email" required placeholder='E-mail'/>
+          <input type="email" required onChange={(e) => { setUser({ ...user, email: e.target.value }) }} placeholder='E-mail'/>
           
         </div>
 
         <div className="input">
 
-          <input type="password" required placeholder='senha'/>
+          <input type="password" requiredname="pass" id="" required onChange={(e) => { setUser({ ...user, password: e.target.value }) }} placeholder='senha'/>
           
         </div>
 
